@@ -1,17 +1,17 @@
 #include <Arduino.h>
 #include "RFID_command.h"
-#include <string>
+#include <string.h>
 
 void UHF_RFID::Sendcommand(UBYTE com_nub)
 {
   UBYTE b = 0;
   while (RFID_cmdnub[com_nub][b] != 0x7E)
   {
-    Serial2.write(RFID_cmdnub[com_nub][b]);
+    Serial1.write(RFID_cmdnub[com_nub][b]);
     b++;
   }
-  Serial2.write(0x7E);
-  Serial2.write("\n\r");
+  Serial1.write(0x7E);
+  Serial1.write("\n\r");
 }
 
 void UHF_RFID::Send_the_modified_command()
@@ -20,20 +20,20 @@ void UHF_RFID::Send_the_modified_command()
 
   while (DATA_Interim_order[b] != 0x7E)
   {
-    Serial2.write(DATA_Interim_order[b]);
+    Serial1.write(DATA_Interim_order[b]);
     b++;
   }
-  Serial2.write(0x7E);
-  Serial2.write("\n");
+  Serial1.write(0x7E);
+  Serial1.write("\n");
 
 }
 
 void UHF_RFID::Readcallback()
 {
-  while (Serial2.available())
+  while (Serial1.available())
   {
     Delay(2);
-    DATA_I[DATA_I_NUB] = Serial2.read();
+    DATA_I[DATA_I_NUB] = Serial1.read();
     if (_debug == 1)
     {
       Serial.print(DATA_Str_Serial);

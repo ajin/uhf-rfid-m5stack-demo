@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "RFID_command.h"
-#include <string>
+#include <string.h>
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
